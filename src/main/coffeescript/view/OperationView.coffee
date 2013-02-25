@@ -58,6 +58,12 @@ class OperationView extends Backbone.View
 
   submitOperation: (e) ->
     e?.preventDefault()
+
+    # Check if API Key is present
+    if @model.resource.api.api_key == ""
+      alert('Please fill in your API Key in the upper right corner')
+      return
+
     # Check for errors
     form = $('.sandbox', $(@el))
     error_free = true
