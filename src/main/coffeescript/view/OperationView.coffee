@@ -19,7 +19,7 @@ class OperationView extends Backbone.View
         sampleJSON: @model.responseSampleJSON
         isParam: false
         signature: @model.responseClassSignature
-        
+
       responseSignatureView = new SignatureView({model: signatureModel, tagName: 'div'})
       $('.model-signature', $(@el)).append responseSignatureView.render().el
     else
@@ -55,13 +55,13 @@ class OperationView extends Backbone.View
     # Render status codes
     statusCodeView = new StatusCodeView({model: statusCode, tagName: 'tr'})
     $('.operation-status', $(@el)).append statusCodeView.render().el
-  
+
   submitOperation: (e) ->
     e?.preventDefault()
     # Check for errors
     form = $('.sandbox', $(@el))
     error_free = true
-    form.find("input.required").each ->
+    form.find("input.required, textarea.required").each ->
       $(@).removeClass "error"
       if jQuery.trim($(@).val()) is ""
         $(@).addClass "error"
@@ -83,7 +83,7 @@ class OperationView extends Backbone.View
       if @model.consumes and @model.consumes.length > 0
         # honor the consumes setting above everything else
         consumes = @model.consumes[0]
-      else 
+      else
         for o in @model.parameters
           if o.paramType == 'form'
             isFormPost = true
@@ -118,10 +118,10 @@ class OperationView extends Backbone.View
           if param.paramType is 'body'
             bodyParam = map[param.name]
 
-      log "bodyParam = " + bodyParam 
+      log "bodyParam = " + bodyParam
 
       headerParams = null
-      invocationUrl = 
+      invocationUrl =
         if @model.supportHeaderParams()
           headerParams = @model.getHeaderParams(map)
           @model.urlify(map, false)
@@ -132,9 +132,22 @@ class OperationView extends Backbone.View
 
 
       $(".request_url", $(@el)).html "<pre>" + invocationUrl + "</pre>"
+
+      if headerParams
+        $(".request_headers", $(@el)).show()
+        $(".request_headers .block", $(@el)).html "<pre>" + JSON.stringify(headerParams, null, "\t").replace(/\n/g, "<br>") + "</pre>"
+      else
+        $(".request_headers", $(@el)).hide()
+
+      if bodyParam
+        $(".request_body", $(@el)).show()
+        $(".request_body .block", $(@el)).html "<pre>" + bodyParam.replace(/\\r\\n/g, "<br>") + "</pre>"
+      else
+        $(".request_body", $(@el)).hide()
+
       $(".response_throbber", $(@el)).show()
 
-      obj = 
+      obj =
         type: @model.httpMethod
         url: invocationUrl
         headers: headerParams
@@ -157,7 +170,7 @@ class OperationView extends Backbone.View
       if responseContentTypeField
         obj.headers = if obj.headers? then obj.headers else {}
         obj.headers.accept = responseContentTypeField
-      
+
       jQuery.ajax(obj)
       false
       # $.getJSON(invocationUrl, (r) => @showResponse(r)).complete((r) => @showCompleteStatus(r)).error (r) => @showErrorStatus(r)
@@ -194,7 +207,7 @@ class OperationView extends Backbone.View
     lines = xml.split('\n')
     indent = 0
     lastType = 'other'
-    # 4 types of tags - single, closing, opening, other (text, doctype, comment) - 4*4 = 16 transitions 
+    # 4 types of tags - single, closing, opening, other (text, doctype, comment) - 4*4 = 16 transitions
     transitions =
       'single->single': 0
       'single->closing': -1
@@ -238,9 +251,9 @@ class OperationView extends Backbone.View
           formatted = formatted.substr(0, formatted.length - 1) + ln + '\n'
         else
           formatted += padding + ln + '\n'
-      
+
     formatted
-    
+
 
   # puts the response data in UI
   showStatus: (data) ->
