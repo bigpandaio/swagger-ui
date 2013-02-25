@@ -2,6 +2,7 @@ class ParameterView extends Backbone.View
   initialize: ->
 
   render: ->
+
     @model.isBody = true if @model.paramType == 'body'
     @model.isFile = true if @model.dataType == 'file'
 
@@ -16,6 +17,9 @@ class ParameterView extends Backbone.View
     if @model.sampleJSON
       signatureView = new SignatureView({model: signatureModel, tagName: 'div'})
       $('.model-signature', $(@el)).append signatureView.render().el
+
+      if (@model.required)
+        $('.snippet', $(@el)).mousedown()
     else
       $('.model-signature', $(@el)).html(@model.signature)
 
