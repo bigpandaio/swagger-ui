@@ -1,5 +1,6 @@
 class MainView extends Backbone.View
-  initialize: ->
+  initialize: (options={})->
+    @showOperations = options.showOperations
 
   render: ->
     # Render the outer container for resources
@@ -10,8 +11,9 @@ class MainView extends Backbone.View
     @
 
   addResource: (resource) ->
+
     # Render a resource and add it to resources li
-    resourceView = new ResourceView({model: resource, tagName: 'li', id: 'resource_' + resource.name, className: 'resource'})
+    resourceView = new ResourceView({model: resource, tagName: 'li', id: 'resource_' + resource.name, className: 'resource', showOperations: @showOperations})
     $('#resources').append resourceView.render().el
 
   clear: ->

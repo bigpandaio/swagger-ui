@@ -22,6 +22,9 @@
         </li>
     </ul>
 </div>
-<ul class='endpoints' id='{{name}}_endpoint_list' style='display:none'>
 
-</ul>
+{{#if showOperations}}
+    <ul class='endpoints' id='{{name}}_endpoint_list'></ul>
+{{else}}
+    <ul class='endpoints' id='{{name}}_endpoint_list' style='display:none'></ul>
+{{/if}}

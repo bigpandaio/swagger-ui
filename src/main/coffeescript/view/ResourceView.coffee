@@ -1,7 +1,10 @@
 class ResourceView extends Backbone.View
-  initialize: ->
+  initialize: (options={}) ->
+    @showOperations = options.showOperations
 
   render: ->
+
+    @model.showOperations = @showOperations
     $(@el).html(Handlebars.templates.resource(@model))
 
     @number = 0

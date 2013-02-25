@@ -712,6 +712,11 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
     outline-color: #cc0000;
 }
 
+body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.content form textarea.error {
+    outline: 2px solid black;
+    outline-color: #cc0000;
+}
+
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.content div.sandbox_header {
     float: none;
     clear: both;
@@ -899,6 +904,11 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
     outline-color: #cc0000;
 }
 
+body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.content form textarea.error {
+    outline: 2px solid black;
+    outline-color: #cc0000;
+}
+
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.content div.sandbox_header {
     float: none;
     clear: both;
@@ -1082,6 +1092,11 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.content form input[type='text'].error {
+    outline: 2px solid black;
+    outline-color: #cc0000;
+}
+
+body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.content form textarea.error {
     outline: 2px solid black;
     outline-color: #cc0000;
 }
@@ -1274,6 +1289,11 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
     outline-color: #F5D5C3;
 }
 
+body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.patch div.content form textarea.error {
+    outline: 2px solid black;
+    outline-color: #F5D5C3;
+}
+
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.patch div.content div.sandbox_header {
     float: none;
     clear: both;
@@ -1457,6 +1477,11 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.content form input[type='text'].error {
+    outline: 2px solid black;
+    outline-color: #cc0000;
+}
+
+body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.content form textarea.error {
     outline: 2px solid black;
     outline-color: #cc0000;
 }
