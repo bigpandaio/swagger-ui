@@ -1104,6 +1104,7 @@ templates['status_code'] = template(function (Handlebars,depth0,helpers,partials
       'click #show-pet-store-icon': 'showPetStore',
       'click #show-wordnik-dev-icon': 'showWordnikDev',
       'click #explore': 'showCustom',
+      'submit #api_selector': 'showCustom',
       'keyup #input_baseUrl': 'showCustomOnKeyup',
       'keyup #input_apiKey': 'showCustomOnKeyup'
     };
@@ -1336,6 +1337,10 @@ templates['status_code'] = template(function (Handlebars,depth0,helpers,partials
         _this = this;
       if (e != null) {
         e.preventDefault();
+      }
+      if (this.model.resource.api.api_key === "") {
+        alert('Please fill in your API Key in the upper right corner');
+        return;
       }
       form = $('.sandbox', $(this.el));
       error_free = true;
