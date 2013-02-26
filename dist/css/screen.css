@@ -1613,3 +1613,17 @@ pre code {
   margin: 0;
   padding: 15px 0 5px 0px;
 }
+
+#api_key_label {
+    color: white;
+}
+
+.response_throbber {
+    content: url("images/throbber.gif");
+    width: auto; /*or your image's width*/
+    height: auto; /*or your image's height*/
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+}
